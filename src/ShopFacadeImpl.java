@@ -1,4 +1,8 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import model.User;
 import model.product.Product;
@@ -15,38 +19,45 @@ public class ShopFacadeImpl implements ShopFacade {
 	}
 
 	@Override
-	public boolean login(String login, String password) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean logout(String login) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean putProductInBag(Product p) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List<Product> getProductsInBag(User user) {
+	public User login(String login, String password) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public long getPriceForWholeBag(User user) {
+	public boolean logout(User user) {
 		// TODO Auto-generated method stub
-		return 0;
+		return false;
+	}
+
+	@Override
+	public boolean putProductInBag(User user, Product p) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public List<Product> getProductsInBag(User user) {
+		return new ArrayList(shop.getBags().get(user).values());
+	}
+
+	@Override
+	public long getCostForWholeBag(User user) {
+		Map<Product, Object> bag = shop.getBags().get(user);
+		Iterator<Product> it = bag.keySet().iterator();
+		long cost = 0;
+		while(it.hasNext()){
+			Product product = it.next();
+			cost += product.getCost();
+		}
+		return cost;
 	}
 
 	@Override
 	public boolean buyWholeBag(User user) {
-		// TODO Auto-generated method stub
+		Map<Product, Object> bag = shop.getBags().get(user);
+		
 		return false;
 	}
 
@@ -56,10 +67,11 @@ public class ShopFacadeImpl implements ShopFacade {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Order> getAllOrders() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Order> getAllOrders(User user) {
+		return Collections.unmodifiableList(new ArrayList(shop.getOrders().values()));
 	}
+
 
 }

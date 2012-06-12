@@ -15,6 +15,7 @@ public class Shop {
 	final private TreeMap<Date, Order> orders = new TreeMap<Date, Order>();
 	final private Map<String, User> customers = new HashMap<String, User>();
 	final private Map<String, User> admins = new HashMap<String, User>();
+	final private LinkedHashMap<User, Date> loginedUsers = new LinkedHashMap<User, Date>();
 	public Map<Product, Integer> getProducts() {
 		return products;
 	}
@@ -30,5 +31,7 @@ public class Shop {
 	public Map<String, User> getAdmins() {
 		return admins;
 	}
-	
-}
+	public LinkedHashMap<User, Date> getLoginedUsers() {
+		return loginedUsers;
+	}
+}	
