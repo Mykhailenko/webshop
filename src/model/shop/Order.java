@@ -1,7 +1,10 @@
 package model.shop;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import model.User;
 import model.product.Product;
@@ -14,20 +17,20 @@ public class Order {
 		DELIVERY, SELF_CARE;
 	}
 	private User user;
-	private LinkedHashMap<Product, Object> bag;
+	private Map<Product, Integer> bag;
 	private PaymentMethod paymentMethod;
 	private DeliveryMethod deliveryMethod;
 	private Date date;
-	public Order(User user, LinkedHashMap<Product, Object> bag,
-			PaymentMethod paymentMethod, DeliveryMethod deliveryMethod, Date date) {
+	public Order() {
+	}
+	
+	public Order(User user, Map<Product, Integer> bag, Date date) {
 		super();
 		this.user = user;
 		this.bag = bag;
-		this.paymentMethod = paymentMethod;
-		this.deliveryMethod = deliveryMethod;
-		this.setDate(date);
+		this.date = date;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -58,17 +61,30 @@ public class Order {
 			return false;
 		return true;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Order [user=" + user + ", date=" + date + ", total=" + totalCost() + "]";
+	}
+	private long totalCost(){
+		long cost = 0;
+		Iterator<Map.Entry<Product, Integer>> it = this.bag.entrySet().iterator();
+		while(it.hasNext()){
+			Map.Entry<Product, Integer> entry = it.next();
+			cost += entry.getKey().getCost() * entry.getValue();
+		}
+		return cost;
+	}
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public LinkedHashMap<Product, Object> getBag() {
+	public Map<Product, Integer> getBag() {
 		return bag;
 	}
-	public void setBag(LinkedHashMap<Product, Object> bag) {
+	public void setBag(Map<Product, Integer> bag) {
 		this.bag = bag;
 	}
 	public PaymentMethod getPaymentMethod() {
