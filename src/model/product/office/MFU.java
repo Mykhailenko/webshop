@@ -22,7 +22,9 @@ public class MFU extends OfficeEquipment{
 	private boolean LAN;
 	private boolean cardReader;
 	private OpticalResolution opticalResolution;
-	
+	public MFU(AbstractArticul articul){
+		super(articul);
+	}
 	public MFU(AbstractArticul articul, String title, String producer, Format format, String description,long cost, 
 			PrintingTechnology printingTechnology, boolean colorPrinting,
 			boolean wifi, boolean usb2_0, boolean lAN, boolean cardReader,

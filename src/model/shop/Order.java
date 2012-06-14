@@ -1,5 +1,6 @@
 package model.shop;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -9,7 +10,9 @@ import java.util.Map;
 import model.User;
 import model.product.Product;
 
-public class Order {
+public class Order implements Serializable {
+	private static final long serialVersionUID = 1951729146508464863L;
+
 	public enum PaymentMethod {
 		CASH, CASHLESS;
 	}

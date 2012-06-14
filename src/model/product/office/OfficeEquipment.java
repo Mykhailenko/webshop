@@ -18,7 +18,9 @@ public class OfficeEquipment extends Product {
 	private boolean colorPrinting;
 	private boolean wifi;
 	private boolean usb2_0;
-	
+	public OfficeEquipment(AbstractArticul articul){
+		super(articul);
+	}
 	
 	public OfficeEquipment(AbstractArticul articul, String title, String producer, String description,long cost,  
 			Format format,	PrintingTechnology printingTechnology, 

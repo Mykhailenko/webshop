@@ -1,8 +1,10 @@
 package model.product;
 
+import java.io.Serializable;
 import java.text.MessageFormat;
 
-public abstract class Product {
+public abstract class Product implements Serializable{
+	private static final long serialVersionUID = -5960679887982021996L;
 	final private AbstractArticul articul;
 	private String title;
 	private String producer;

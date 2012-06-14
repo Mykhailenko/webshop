@@ -8,6 +8,9 @@ import model.product.office.MFU.OpticalResolution;
 
 public class Printer extends OfficeEquipment{
 
+	public Printer(AbstractArticul articul){
+		super(articul);
+	}
 	public Printer(AbstractArticul articul, String title, String producer, String description, long cost,  
 			Format format, PrintingTechnology printingTechnology, boolean colorPrinting,
 			boolean wifi, boolean usb2_0, boolean lAN, boolean cardReader,

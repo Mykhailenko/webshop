@@ -1,6 +1,9 @@
 package model.product;
 
-public abstract class AbstractArticul {
+import java.io.Serializable;
+
+public abstract class AbstractArticul implements Serializable{
+	private static final long serialVersionUID = 2113539580515880971L;
 	final protected String articul;
 	final protected int hash;
 	protected AbstractArticul(String articul) {

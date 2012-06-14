@@ -11,7 +11,7 @@ public class Tablet extends MobileDevice{
 		px800x600, px1024x600, px1024x768,
 		px1280x800, px2048x1536;
 	}
-	private enum ProccessorProducer {
+	public  enum ProccessorProducer {
 		AMD, Apple, Cortex, Intel, NVIDIA, 
 		Qualcomm;
 	}
@@ -22,7 +22,9 @@ public class Tablet extends MobileDevice{
 	private int hddVolume;// in MB
 	private int numberOfUSB;
 	private boolean HDMI;
-	
+	public Tablet(AbstractArticul articul){
+		super(articul);
+	}
 	public Tablet(AbstractArticul articul, String title, String producer,
 			String description,	long cost, double diagonal, 
 			OS os, int batteryCapacity, boolean gPS, 

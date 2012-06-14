@@ -30,4 +30,6 @@ public interface ShopFacade {
 	NavigableMap<Date, Order> getAllOrders(User user);
 	
 	void clearBag(User user);
+	
+	boolean addProduct(User user, Product product) throws AccessViolationException;
 }

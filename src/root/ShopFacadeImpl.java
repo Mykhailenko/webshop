@@ -1,5 +1,8 @@
 package root;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.NavigableMap;
 
-
 import model.User;
 import model.product.Product;
 import model.shop.Order;
@@ -18,33 +20,38 @@ import model.shop.Shop;
 
 public class ShopFacadeImpl implements ShopFacade{
 	final private Shop shop;
-	final private List<Product> products = new ArrayList<Product>();
 	public ShopFacadeImpl(Shop shop) {
 		super();
 		this.shop = shop;
-		products.addAll(shop.getProducts());
 	}
 
 	@Override
 	public User login(String login, String password) {
 		User user = shop.getCustomers().get(login);
-		if(hashForPassword(password).equals(user.getHashPassword())){
-			shop.getLoginedUsers().put(user, Calendar.getInstance().getTime());
-			return user;
+		if(user != null){
+			if(hashForPassword(password).equals(user.getHashPassword())){
+				shop.getLoginedUsers().put(user, Calendar.getInstance().getTime());
+				return user;
+			}else{
+				return null;
+			}
 		}else{
 			return null;
 		}
 	}
-	////////////////////////////////////////////////////////////
 	private static String hashForPassword(String pass){
-//		int res = 0;
-//		for(int i = 0; i < pass.length(); ++i){
-//			res += pass.charAt(i);
-//		}
-//		return String.valueOf(res);
-		return String.valueOf(pass.length());
+		MessageDigest md = null;
+		byte[] bytesOfMessage = null;
+		try {
+			bytesOfMessage = pass.getBytes("UTF-8");
+			md = MessageDigest.getInstance("MD5");
+		} catch (Exception e) {
+		}
+		String s = null;
+		s = new String(md.digest(bytesOfMessage));
+		return s;
 	}
-	////////////////////////////////////////////////////////////
+
 	@Override
 	public boolean logout(User user) {
 		shop.getLoginedUsers().remove(user);
@@ -53,7 +60,7 @@ public class ShopFacadeImpl implements ShopFacade{
 
 	@Override
 	public List<Product> getAllProducts() {
-		return products;
+		return shop.getProducts();
 	}
 
 	@Override
@@ -164,5 +171,11 @@ public class ShopFacadeImpl implements ShopFacade{
 	@Override
 	public void clearBag(User user) {
 		createNewUserBagAndCashedBag(user);
+	}
+
+	@Override
+	public boolean addProduct(User user, Product product)
+			throws AccessViolationException {
+		return shop.addProduct(product);
 	}
 }

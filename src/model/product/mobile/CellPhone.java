@@ -17,7 +17,9 @@ public class CellPhone extends MobileDevice {
 	private boolean bluetooth;
 	private boolean wifi;
 	private Color color;
-	
+	public CellPhone(AbstractArticul articul){
+		super(articul);
+	}
 	public CellPhone(AbstractArticul articul, String title, String producer, String description,long cost, 
 			double diagonal, OS os, int batteryCapacity, boolean gPS,
 			double cameraResolution,ShellType shellType, boolean sensor, int numberOfSims,

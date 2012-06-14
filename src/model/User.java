@@ -1,8 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.text.MessageFormat;
 
-public class User {
+
+public class User implements Serializable{
+	private static final long serialVersionUID = -2005838902055622982L;
 	final private String login;
 	private String email;
 	private String hashPassword;

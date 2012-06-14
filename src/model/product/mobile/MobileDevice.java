@@ -14,7 +14,9 @@ public class MobileDevice extends Product{
 	private int batteryCapacity;
 	private boolean GPS;
 	private double cameraResolution;
-	
+	public MobileDevice(AbstractArticul articul){
+		super(articul);
+	}
 	public MobileDevice(AbstractArticul articul, String title, String producer,
 			String description,	long cost, double diagonal, 
 			OS os, int batteryCapacity, boolean gPS, 
