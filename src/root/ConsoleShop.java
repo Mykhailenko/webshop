@@ -1,6 +1,5 @@
 package root;
 
-import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -8,47 +7,57 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
-import java.util.Random;
+import java.util.NoSuchElementException;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.SortedMap;
 
+import org.apache.log4j.Logger;
+
 import model.User;
-import model.product.Articul1;
 import model.product.Product;
-import model.product.mobile.CellPhone;
-import model.product.mobile.CellPhone.ShellType;
-import model.product.mobile.MobileDevice;
-import model.product.mobile.MobileDevice.OS;
-import model.product.mobile.Tablet.DisplayResolution;
-import model.product.mobile.Tablet.ProccessorProducer;
-import model.product.mobile.Tablet;
-import model.product.office.MFU;
-import model.product.office.OfficeEquipment;
-import model.product.office.MFU.OpticalResolution;
-import model.product.office.OfficeEquipment.Format;
-import model.product.office.OfficeEquipment.PrintingTechnology;
-import model.product.office.Printer;
 import model.shop.Order;
 
 public class ConsoleShop {
+	private static final Logger LOGGER = Logger.getRootLogger();
 	public final int MILLIS_IN_DAY = 1000 * 60 * 60 * 24;
 	private ShopFacade facade;
 	private Scanner in;
 	private User user;
+	private static ResourceBundle res;
+	private FillProducts fillProducts;
 	
 	public ConsoleShop(ShopFacade facade) {
 		super();
 		this.facade = facade;
 		this.in = new Scanner(System.in);
 	}
-
 	public void start() {
 		p("====Gleb Web Shop====");
-		addProducts();
-		
-		
+		chooseLocale();
 		login();
+		chooseAddProductMethod();
+		mainCycle();
+	}
+	private void chooseLocale() {
+		p("Enter the language(by index):");
+		p("0 - english;");
+		p("1 - russian;");
+		int lang = in.nextInt();
+		if(lang == 1){
+			LOGGER.info("russin selected;");
+			Locale.setDefault(new Locale("ru"));
+		}else{
+			LOGGER.info("english selected;");
+			Locale.setDefault(new Locale("en"));
+		}
+		res = ResourceBundle.getBundle("data");
+	}
+
+
+	private void mainCycle(){
 		while (true) {
 			try {
 				printOpportunities();
@@ -101,16 +110,16 @@ public class ConsoleShop {
 					facade.clearBag(user);
 					break;
 				case 6:
-					p("enter the time FROM(h:mm):");
+					p("enter the time FROM(k:mm):");
 					String s = in.next();
-					SimpleDateFormat sdf1 = new SimpleDateFormat("h:mm");
+					SimpleDateFormat sdf1 = new SimpleDateFormat("k:mm");
 					Date dateFrom = null;
 					try {
 						dateFrom = sdf1.parse(s);
 					} catch (ParseException e) {
 						return;
 					}
-					p("enter the time TO(h:mm):");
+					p("enter the time TO(k:mm):");
 					s = in.next();
 					Date dateTo = null;
 					try {
@@ -118,14 +127,18 @@ public class ConsoleShop {
 					} catch (ParseException e) {
 						return;
 					}
-					Date date = Calendar.getInstance().getTime();
-					dateFrom.setYear(date.getYear());
-					dateFrom.setMonth(date.getMonth());
-					dateFrom.setDate(date.getDate());
-					dateTo.setYear(date.getYear());
-					dateTo.setMonth(date.getMonth());
-					dateTo.setDate(date.getDate());
-					printOrdersFromDateToDate(dateFrom, dateTo);
+					Calendar cur = Calendar.getInstance();
+					Calendar from = Calendar.getInstance();
+					from.setTime(dateFrom);
+					from.set(Calendar.YEAR, cur.get(Calendar.YEAR));
+					from.set(Calendar.MONTH, cur.get(Calendar.MONTH));
+					from.set(Calendar.DATE, cur.get(Calendar.DATE));
+					Calendar to = Calendar.getInstance();
+					to.setTime(dateTo);
+					to.set(Calendar.YEAR, cur.get(Calendar.YEAR));
+					to.set(Calendar.MONTH, cur.get(Calendar.MONTH));
+					to.set(Calendar.DATE, cur.get(Calendar.DATE));
+					printOrdersFromDateToDate(from.getTime(), to.getTime());
 					break;
 				case 7:
 					SimpleDateFormat dateFormat = new SimpleDateFormat(
@@ -142,6 +155,9 @@ public class ConsoleShop {
 					printOrdersFromDateToDate(date2, nextDay);
 					break;
 				case 8:
+					addProducts();
+					break;
+				case 9:
 					return;
 				default:
 					break;
@@ -149,18 +165,25 @@ public class ConsoleShop {
 			} catch (InputMismatchException e) {
 				in.close();
 				in = new Scanner(System.in);
+			}catch(NoSuchElementException eee){
+				in.close();
+				in = new Scanner(System.in);
 			}
 		}
-
+	}
+	
+	private void addProducts() {
+		fillProducts.fill();
 	}
 
-	private void addProducts() {
-		p("do y wanns that products will generate('y') or by youself('n')");
-		String a = in.next();
-		if(a.equals("y")){
-			generate();
-		}else {
-			rukami();
+
+	private void chooseAddProductMethod() {
+		p(res.getString("choose_add_product_mode"));
+		int act = in.nextInt();
+		if(act == 0){
+			fillProducts = new GenerateProducts(user, facade);
+		}else{
+			fillProducts = new HandFillProducts(user, facade);
 		}
 	}
 
@@ -168,7 +191,6 @@ public class ConsoleShop {
 
 	private void printOrdersFromDateToDate(Date from, Date to) {
 		SortedMap<Date, Order> map = facade.getAllOrders(user).subMap(from, to);
-		;
 		Iterator<Order> x = map.values().iterator();
 		while (x.hasNext()) {
 			Order order = x.next();
@@ -177,35 +199,30 @@ public class ConsoleShop {
 	}
 
 	private void login() {
-		p("login:");
+		p(res.getString("pr_login"));
 		String login = in.next();
-		p("password:");
+		p(res.getString("pr_password"));
 		String password = in.next();
 		user = facade.login(login, password);
 		if (user == null) {
-			p("password or login is wrong!");
+			p(res.getString("er_password_login_wrong"));
 			throw new UnregisteredUserOrIncorrectPasswordException();
 		}
 	}
 
-	private static void selectProduct() {
-		p("if u want select and add product to bag enter the index of product, or if u don't want select any product - enter the '-1'");
+	private void selectProduct() {
+		p(res.getString("pr_select_product"));
 	}
 
-	private static void printOpportunities() {
-		p("Chooes action:");
-		p("0 - get products list;");
-		p("1 - get the bag;");
-		p("2 - get total cost of bag;");
-		p("3 - buy the bag;");
-		p("4 - get the latest 5 products in bag;");
-		p("5 - clear the bag");
-		p("6 - get orders for term;");
-		p("7 - get orders for date;");
-		p("8 - exit;");
+	private void printOpportunities() {
+		p(res.getString("choose_action"));
+		
 	}
 
 	private static void p(String s) {
 		System.out.println(s);
+	}
+	public static ResourceBundle getRes() {
+		return res;
 	}
 }

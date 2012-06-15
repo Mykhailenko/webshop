@@ -14,8 +14,8 @@ public class OfficeEquipment extends Product {
 	}
 	
 	private Format format;
-	private PrintingTechnology printingTechnology;
 	private boolean colorPrinting;
+	private PrintingTechnology printingTechnology;
 	private boolean wifi;
 	private boolean usb2_0;
 	public OfficeEquipment(AbstractArticul articul){

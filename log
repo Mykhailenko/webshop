@@ -1,2 +1,75 @@
 10:49:22,150  INFO ConsoleShopTest:t:42 - log test in test
 10:49:33,653  INFO ConsoleShopTest:t:42 - log test in test
+10:25:23,536  INFO root.GenerateProducts:fill:44 - 0 : 3
+10:25:23,536  INFO root.GenerateProducts:fill:44 - 1 : 3
+10:25:23,536  INFO root.GenerateProducts:fill:44 - 2 : 3
+10:26:49,684  INFO root.GenerateProducts:fill:44 - 0 : 3
+10:26:49,700  INFO root.GenerateProducts:fill:44 - 1 : 3
+10:26:49,700  INFO root.GenerateProducts:fill:44 - 2 : 3
+10:26:54,600  INFO root.GenerateProducts:fill:44 - 0 : 3
+10:26:54,600  INFO root.GenerateProducts:fill:44 - 1 : 3
+10:26:54,600  INFO root.GenerateProducts:fill:44 - 2 : 3
+10:28:23,429  INFO root.GenerateProducts:fill:44 - 0 : 3
+10:28:23,429  INFO root.GenerateProducts:fill:44 - 1 : 3
+10:28:23,429  INFO root.GenerateProducts:fill:44 - 2 : 3
+10:28:50,644  INFO root.GenerateProducts:fill:44 - 0 : 3
+10:28:50,677  INFO root.GenerateProducts:fill:44 - 1 : 3
+10:28:50,677  INFO root.GenerateProducts:fill:44 - 2 : 3
+10:30:10,685  INFO root.GenerateProducts:fill:39 - FILL
+10:30:10,701  INFO root.GenerateProducts:fill:45 - 0 : 3
+10:30:10,702  INFO root.GenerateProducts:fill:45 - 1 : 3
+10:30:10,702  INFO root.GenerateProducts:fill:45 - 2 : 3
+10:30:44,012  INFO root.GenerateProducts:fill:39 - FILL
+10:30:44,027  INFO root.GenerateProducts:fill:45 - 0 : 3
+10:30:44,027  INFO root.GenerateProducts:fill:45 - 1 : 3
+10:30:44,027  INFO root.GenerateProducts:fill:45 - 2 : 3
+11:02:26,745  INFO root.HandFillProducts:fill:48 - 0 : 1
+11:31:40,013  INFO root.HandFillProducts:fill:48 - 0 : 1
+11:32:33,475  INFO root.HandFillProducts:fill:48 - 0 : 1
+11:40:24,756  INFO root.HandFillProducts:fill:48 - 0 : 1
+11:42:33,163  INFO root.HandFillProducts:fill:48 - 0 : 1
+11:43:28,858  INFO root.HandFillProducts:fill:48 - 0 : 1
+11:44:00,960  INFO root.HandFillProducts:fill:48 - 0 : 1
+11:47:23,535  INFO root.HandFillProducts:fill:49 - 0 : 1
+11:58:02,368  INFO root.HandFillProducts:fill:48 - 0 : 1
+13:38:33,097  INFO root.HandFillProducts:fill:45 - 0 : 1
+14:20:45,898  INFO root.HandFillProducts:fill:45 - 0 : 1
+14:24:33,186  INFO root.HandFillProducts:fill:45 - 0 : 1
+14:25:13,142  INFO root.HandFillProducts:fill:45 - 0 : 1
+14:28:24,904  INFO root.HandFillProducts:fill:45 - 0 : 1
+14:28:29,758  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.CellPhone.setWifi(boolean)
+14:28:36,029  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.CellPhone.setShellType(model.product.mobile.CellPhone$ShellType)
+14:28:38,760  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.CellPhone.setSensor(boolean)
+14:28:41,648  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.CellPhone.setNumberOfSims(int)
+14:28:46,391  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.CellPhone.setBluetooth(boolean)
+14:28:48,779  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.CellPhone.setColor(java.awt.Color)
+14:28:48,779  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.MobileDevice.setCameraResolution(double)
+14:29:04,286  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.MobileDevice.setDiagonal(double)
+14:29:08,484  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.MobileDevice.setOs(model.product.mobile.MobileDevice$OS)
+14:29:12,338  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.MobileDevice.setBatteryCapacity(int)
+14:29:18,548  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.MobileDevice.setGPS(boolean)
+14:29:47,802  INFO root.HandFillProducts:fill:45 - 0 : 1
+14:29:51,065  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.CellPhone.setWifi(boolean)
+14:29:53,140  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.CellPhone.setShellType(model.product.mobile.CellPhone$ShellType)
+14:29:54,795  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.CellPhone.setSensor(boolean)
+14:29:56,200  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.CellPhone.setNumberOfSims(int)
+14:29:57,979  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.CellPhone.setBluetooth(boolean)
+14:29:59,103  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.CellPhone.setColor(java.awt.Color)
+14:29:59,103  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.MobileDevice.setCameraResolution(double)
+14:30:01,008  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.MobileDevice.setDiagonal(double)
+14:30:02,288  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.MobileDevice.setOs(model.product.mobile.MobileDevice$OS)
+14:30:04,161  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.MobileDevice.setBatteryCapacity(int)
+14:30:06,517  INFO root.HandFillProducts:fillProduct:84 - public void model.product.mobile.MobileDevice.setGPS(boolean)
+14:30:09,092  INFO root.HandFillProducts:fillProduct:84 - public void model.product.Product.setCost(long)
+14:30:11,153  INFO root.HandFillProducts:fillProduct:84 - public void model.product.Product.setProducer(java.lang.String)
+14:30:14,773  INFO root.HandFillProducts:fillProduct:84 - public void model.product.Product.setTitle(java.lang.String)
+14:30:15,975  INFO root.HandFillProducts:fillProduct:84 - public void model.product.Product.setDescription(java.lang.String)
+14:56:09,698  INFO root.HandFillProducts:fill:41 - 0 : 1
+14:56:13,477  INFO root.HandFillProducts:fillProduct:80 - public void model.product.office.OfficeEquipment.setPrintingTechnology(model.product.office.OfficeEquipment$PrintingTechnology)
+14:56:21,994  INFO root.HandFillProducts:fillProduct:80 - public void model.product.office.OfficeEquipment.setColorPrinting(boolean)
+14:57:00,703  INFO root.HandFillProducts:fill:41 - 0 : 1
+15:53:08,615  INFO root.ConsoleShop:chooseLocale:53 - english selected;
+15:53:33,360  INFO root.ConsoleShop:chooseLocale:53 - english selected;
+15:54:02,706  INFO root.ConsoleShop:chooseLocale:53 - english selected;
+15:54:47,771  INFO root.ConsoleShop:chooseLocale:50 - russin selected;
+17:34:30,770  INFO root.ConsoleShop:chooseLocale:50 - russin selected;

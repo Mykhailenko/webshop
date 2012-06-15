@@ -16,14 +16,14 @@ public class CellPhone extends MobileDevice {
 	private int numberOfSims;
 	private boolean bluetooth;
 	private boolean wifi;
-	private Color color;
+	private String color;
 	public CellPhone(AbstractArticul articul){
 		super(articul);
 	}
 	public CellPhone(AbstractArticul articul, String title, String producer, String description,long cost, 
 			double diagonal, OS os, int batteryCapacity, boolean gPS,
 			double cameraResolution,ShellType shellType, boolean sensor, int numberOfSims,
-			 boolean bluetooth, boolean wifi,	Color color) {
+			 boolean bluetooth, boolean wifi,	String color) {
 		super(articul, title, producer, description, cost, diagonal, os, batteryCapacity, gPS, cameraResolution);
 		this.shellType = shellType;
 		this.sensor = sensor;
@@ -74,11 +74,12 @@ public class CellPhone extends MobileDevice {
 	public void setWifi(boolean wifi) {
 		this.wifi = wifi;
 	}
-	public Color getColor() {
+	public String getColor() {
 		return color;
 	}
-	public void setColor(Color color) {
+	public void setColor(String color) {
 		this.color = color;
 	}
+	
 	
 }

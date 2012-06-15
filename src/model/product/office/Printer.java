@@ -13,8 +13,7 @@ public class Printer extends OfficeEquipment{
 	}
 	public Printer(AbstractArticul articul, String title, String producer, String description, long cost,  
 			Format format, PrintingTechnology printingTechnology, boolean colorPrinting,
-			boolean wifi, boolean usb2_0, boolean lAN, boolean cardReader,
-			OpticalResolution opticalResolution) {
+			boolean wifi, boolean usb2_0) {
 		super(articul, title, producer, description, cost, format, printingTechnology, colorPrinting, wifi, usb2_0);
 	}
 

@@ -5,6 +5,7 @@ import java.text.MessageFormat;
 import model.product.AbstractArticul;
 
 public class MFU extends OfficeEquipment{
+	private static final long serialVersionUID = 6614482025943522472L;
 	public enum OpticalResolution {
 		dpi300x300,
 		dpi400x600,

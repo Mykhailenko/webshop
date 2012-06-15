@@ -1,9 +1,12 @@
 package root;
 
-import java.awt.Color;
 import java.util.Calendar;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
+
+import model.User;
+import model.product.Articul1;
 import model.product.Product;
 import model.product.mobile.CellPhone;
 import model.product.mobile.MobileDevice;
@@ -20,21 +23,51 @@ import model.product.office.OfficeEquipment.Format;
 import model.product.office.OfficeEquipment.PrintingTechnology;
 
 public class GenerateProducts implements FillProducts{
+	private static final Logger LOGGER = Logger.getRootLogger();
 	private Random random = new Random(Calendar.getInstance().getTimeInMillis());
+	private ShopFacade facade;
+	private User user;
+	public GenerateProducts(User user, ShopFacade facade) {
+		super();
+		this.facade = facade;
+		this.user = user;
+	}
 	@Override
 	public void fill() {
-		// TODO Auto-generated method stub
-		
-	}
-	private void generate() {
-		generatePrinter(10);
-		
-	}
-	
-	private void generatePrinter(int times) {
-		for(int i = 0; i < times; ++i){
-			
+		LOGGER.info("FILL");
+		Printer printer;
+		MFU mfu;
+		CellPhone cellPhone;
+		Tablet tablet;
+		for(int i = 0; i < COUNT; ++i){
+			LOGGER.info(i + " : " + COUNT);
+			int nextInt = random.nextInt(4);
+			switch (nextInt) {
+			case 0:
+				printer = new Printer(new Articul1("printer-articul"+random.nextInt()));
+				generatePrinter(printer);
+				facade.addProduct(user, printer);
+				break;
+			case 1:
+				mfu = new MFU(new Articul1("mfu-article"+ random.nextInt()));
+				generateMFU(mfu);
+				facade.addProduct(user, mfu);
+				break;
+			case 2:
+				cellPhone = new CellPhone(new Articul1("cellPhone-articul"+random.nextInt()));
+				generateCellPhone(cellPhone);
+				facade.addProduct(user, cellPhone);
+				break;
+			case 3:
+				tablet = new Tablet(new Articul1("tablet-articul"+random.nextInt()));
+				generateTablet(tablet);
+				facade.addProduct(user, tablet);
+				break;
+			default:
+				break;
+			}
 		}
+		
 	}
 	private void generateProduct(Product product){
 		product.setCost(random.nextInt());
@@ -71,7 +104,7 @@ public class GenerateProducts implements FillProducts{
 	private void  generateCellPhone(CellPhone cellPhone) {
 		generateMobileDevice(cellPhone);
 		cellPhone.setBluetooth(random.nextBoolean());
-		cellPhone.setColor(Color.DARK_GRAY);
+		cellPhone.setColor("green");
 		cellPhone.setNumberOfSims(random.nextInt(4));
 		cellPhone.setSensor(random.nextBoolean());
 		cellPhone.setShellType(ShellType.values()[random.nextInt(ShellType.values().length)]);

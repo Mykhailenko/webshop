@@ -1,7 +1,10 @@
 package model.product;
 
 import java.io.Serializable;
+import java.lang.reflect.Method;
 import java.text.MessageFormat;
+
+import root.ConsoleShop;
 
 public abstract class Product implements Serializable{
 	private static final long serialVersionUID = -5960679887982021996L;
@@ -30,7 +33,6 @@ public abstract class Product implements Serializable{
 				"Product [id={0}, title={1}, producer={2}, description={3}]",
 				articul, title, producer, description);
 	}
-
 
 	@Override
 	public int hashCode() {

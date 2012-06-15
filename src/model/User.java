@@ -42,7 +42,7 @@ public class User implements Serializable{
 	@Override
 	public String toString() {
 		return MessageFormat.format("User [email={0}, login={1}, hashPassword={2}]",
-				email, login, hashPassword);
+				email, login, "doNotEverThink");
 	}
 	public String getEmail() {
 		return email;
