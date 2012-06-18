@@ -1,9 +1,12 @@
-package root;
+package root.impl;
 
 import java.util.Calendar;
 import java.util.Random;
 
 import org.apache.log4j.Logger;
+
+import root.interfaces.FillProducts;
+import root.interfaces.Shop;
 
 import model.User;
 import model.product.Articul1;
@@ -25,9 +28,9 @@ import model.product.office.OfficeEquipment.PrintingTechnology;
 public class GenerateProducts implements FillProducts{
 	private static final Logger LOGGER = Logger.getRootLogger();
 	private Random random = new Random(Calendar.getInstance().getTimeInMillis());
-	private ShopFacade facade;
+	private Shop facade;
 	private User user;
-	public GenerateProducts(User user, ShopFacade facade) {
+	public GenerateProducts(User user, Shop facade) {
 		super();
 		this.facade = facade;
 		this.user = user;

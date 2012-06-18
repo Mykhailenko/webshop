@@ -1,12 +1,18 @@
-package root;
+package root.impl;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
+import root.ConsoleShop;
+import root.interfaces.FillProducts;
+import root.interfaces.Shop;
+
 import model.User;
 import model.product.Articul1;
+import model.product.NamedAttribute;
 import model.product.Product;
 import model.product.mobile.CellPhone;
 import model.product.mobile.Tablet;
@@ -17,8 +23,8 @@ public class HandFillProducts implements FillProducts {
 	private static final Logger LOGGER = Logger.getRootLogger();
 	private Scanner in;
 	private User user;
-	private ShopFacade facade;
-	public HandFillProducts(User user, ShopFacade facade) {
+	private Shop facade;
+	public HandFillProducts(User user, Shop facade) {
 		this.user = user;
 		this.facade = facade;
 		this.in = new Scanner(System.in);
@@ -173,7 +179,14 @@ public class HandFillProducts implements FillProducts {
 		}
 	}
 	private String clearSET(Method method){
-		return ConsoleShop.getRes().getString(method.getName().substring(3).toLowerCase());
+		Annotation[] as = method.getDeclaredAnnotations();
+		if(as != null && as.length > 0){
+			NamedAttribute namedAttribute = (NamedAttribute) as[0];
+			return ConsoleShop.getRes().getString(namedAttribute.value());
+		}else{
+			return method.getName().substring(3);
+		}
+//		return ConsoleShop.getRes().getString(method.getName().substring(3).toLowerCase());
 	}
 	private static void p(String s){
 		System.out.println(s);

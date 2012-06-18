@@ -37,6 +37,14 @@ public class SaverLoaderUtil {
 		FileOutputStream fileOutputStream = new FileOutputStream(fileName);
 		saveObjectToOutputStream(obj, fileOutputStream);
 	}
+	
+	public  static void saveObjectsToFile(String fileName, Object ... os) throws IOException{
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName));
+		for (int i = 0; i < os.length; i++) {
+			oos.writeObject(os[i]);
+		}
+		oos.close();
+	}
 	private static void saveObjectToOutputStream(Object obj, OutputStream outputStream) throws IOException{
 		ObjectOutputStream oos = new ObjectOutputStream(outputStream);
 		oos.writeObject(obj);

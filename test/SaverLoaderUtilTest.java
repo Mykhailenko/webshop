@@ -2,13 +2,14 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.Set;
+import java.util.List;
 
 import model.product.Product;
-import model.shop.Shop;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
+
+import root.interfaces.Shop;
 
 import util.SaverLoaderUtil;
 
@@ -18,7 +19,7 @@ public class SaverLoaderUtilTest {
 	public void t(){
 		Shop shop = ConsoleShopTest.getShop();
 		try {
-			SaverLoaderUtil.saveObjectToFile(shop.getProducts(), "products");
+			SaverLoaderUtil.saveObjectToFile(shop.getAllProducts(), "products");
 		} catch (IOException e) {
 			LOGGER.error(e);
 			assertTrue(false);
@@ -27,9 +28,9 @@ public class SaverLoaderUtilTest {
 	}
 	@Test
 	public void tread(){
-		Set<Product> s = null;  
+		List<Product> s = null;  
 		try {
-			s = SaverLoaderUtil.<Set<Product>>loadObjectFromFile("products");
+			s = SaverLoaderUtil.<List<Product>>loadObjectFromFile("products");
 		} catch (Exception e) {
 			LOGGER.error(e);
 			assertTrue(false);
@@ -38,12 +39,13 @@ public class SaverLoaderUtilTest {
 		while(it.hasNext()){
 			System.out.println(it.next());
 		}
+		assertTrue(true);
 	}
 	@Test
 	public void countTest(){
 		Shop shop = ConsoleShopTest.getShop();
 		try {
-			SaverLoaderUtil.saveObjectNTimesToFile(shop.getProducts(), "many", 10000);
+			SaverLoaderUtil.saveObjectNTimesToFile(shop.getAllProducts(), "many", 10000);
 		} catch (IOException e) {
 			LOGGER.error(e);
 			assertTrue(false);
@@ -54,7 +56,7 @@ public class SaverLoaderUtilTest {
 	public void testGZip(){
 		Shop shop = ConsoleShopTest.getShop();
 		try{
-			SaverLoaderUtil.saveGZipObjectNTimesToFile(shop.getProducts(), "zipMany", 10000);
+			SaverLoaderUtil.saveGZipObjectNTimesToFile(shop.getAllProducts(), "zipMany", 10000);
 		} catch (IOException e) {
 			LOGGER.error(e);
 			assertTrue(false);

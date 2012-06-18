@@ -16,35 +16,45 @@ import java.util.SortedMap;
 
 import org.apache.log4j.Logger;
 
+import root.exceptions.UnregisteredUserOrIncorrectPasswordException;
+import root.impl.GenerateProducts2;
+import root.impl.HandFillProducts;
+import root.interfaces.Bag;
+import root.interfaces.FillProducts;
+import root.interfaces.Shop;
+
 import model.User;
 import model.product.Product;
 import model.shop.Order;
 
 public class ConsoleShop {
 	private static final Logger LOGGER = Logger.getRootLogger();
+	private static final String FILE_NAME = "shop";
 	public final int MILLIS_IN_DAY = 1000 * 60 * 60 * 24;
-	private ShopFacade facade;
+	private Shop shop;
+	private Bag bag;
 	private Scanner in;
 	private User user;
 	private static ResourceBundle res;
 	private FillProducts fillProducts;
 	
-	public ConsoleShop(ShopFacade facade) {
+	public ConsoleShop(Shop facade) {
 		super();
-		this.facade = facade;
+		this.shop = facade;
 		this.in = new Scanner(System.in);
 	}
 	public void start() {
-		p("====Gleb Web Shop====");
+		print("====Gleb Web Shop====");
 		chooseLocale();
 		login();
 		chooseAddProductMethod();
+		loadFromFile();
 		mainCycle();
 	}
 	private void chooseLocale() {
-		p("Enter the language(by index):");
-		p("0 - english;");
-		p("1 - russian;");
+		print("Enter the language(by index):");
+		print("0 - english;");
+		print("1 - russian;");
 		int lang = in.nextInt();
 		if(lang == 1){
 			LOGGER.info("russin selected;");
@@ -64,101 +74,35 @@ public class ConsoleShop {
 				int action = in.nextInt();
 				switch (action) {
 				case 0:
-					selectProduct();
-					List<Product> products = facade.getAllProducts();
-					for (int i = 0; i < products.size(); ++i) {
-						p(i + " : " + products.get(i).toString());
-					}
-					int index = in.nextInt();
-					if (0 <= index && index < products.size()) {
-						Product product = products.get(index);
-						facade.putProductInBag(user, product);
-					}
+					printAll();
 					break;
 				case 1:
-					p("your bag contains:");
-					Map<Product, Integer> bag = facade.getProductsInBag(user);
-					Iterator<Map.Entry<Product, Integer>> it = bag.entrySet()
-							.iterator();
-					while (it.hasNext()) {
-						Map.Entry<Product, Integer> entry = it.next();
-						p(entry.getValue() + " X " + entry.getKey().toString());
-					}
+					printBag();
 					break;
 				case 2:
-					long cost = facade.getCostForWholeBag(user);
-					p("total cost: " + cost);
+					printCost();
 					break;
 				case 3:
-					p("if u really want buy the bag enter 'y', if u not want - enter 'n'");
-					String ch = in.next();
-					if (ch.equals("y")) {
-						if (facade.buyWholeBag(user)) {
-							p("your are successfully bought the bag!");
-						} else {
-							p("something gets wrong!");
-						}
-					}
+					buyBag();
 					break;
 				case 4:
-					p("the latest 5 product added in your bag:");
-					for (Product product : facade.get5LastProductsInBag(user)) {
-						p(product.toString());
-					}
+					printLast();
 					break;
 				case 5:
-					facade.clearBag(user);
+					clear();
 					break;
 				case 6:
-					p("enter the time FROM(k:mm):");
-					String s = in.next();
-					SimpleDateFormat sdf1 = new SimpleDateFormat("k:mm");
-					Date dateFrom = null;
-					try {
-						dateFrom = sdf1.parse(s);
-					} catch (ParseException e) {
-						return;
-					}
-					p("enter the time TO(k:mm):");
-					s = in.next();
-					Date dateTo = null;
-					try {
-						dateTo = sdf1.parse(s);
-					} catch (ParseException e) {
-						return;
-					}
-					Calendar cur = Calendar.getInstance();
-					Calendar from = Calendar.getInstance();
-					from.setTime(dateFrom);
-					from.set(Calendar.YEAR, cur.get(Calendar.YEAR));
-					from.set(Calendar.MONTH, cur.get(Calendar.MONTH));
-					from.set(Calendar.DATE, cur.get(Calendar.DATE));
-					Calendar to = Calendar.getInstance();
-					to.setTime(dateTo);
-					to.set(Calendar.YEAR, cur.get(Calendar.YEAR));
-					to.set(Calendar.MONTH, cur.get(Calendar.MONTH));
-					to.set(Calendar.DATE, cur.get(Calendar.DATE));
-					printOrdersFromDateToDate(from.getTime(), to.getTime());
+					printForPeriod();
 					break;
 				case 7:
-					SimpleDateFormat dateFormat = new SimpleDateFormat(
-							"dd/MM/yyyy");
-					p("enter the date in format dd/mm/yyyy");
-					String sDate = in.next();
-					Date date2 = null;
-					try {
-						date2 = dateFormat.parse(sDate);
-					} catch (ParseException e) {
-						return;
-					}
-					Date nextDay = new Date(date2.getTime() + MILLIS_IN_DAY);
-					printOrdersFromDateToDate(date2, nextDay);
+					printForDate();
 					break;
 				case 8:
 					addProducts();
 					break;
 				case 9:
-					return;
+					saveAndExit();
+					break;
 				default:
 					break;
 				}
@@ -171,6 +115,100 @@ public class ConsoleShop {
 			}
 		}
 	}
+	private void loadFromFile(){
+		shop.loadFromFile(FILE_NAME);
+	}
+	private void saveAndExit(){
+		shop.saveToFile(FILE_NAME);
+		System.exit(0);
+	}
+	private void printForDate() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+				"dd/MM/yyyy");
+		print("enter the date in format dd/mm/yyyy");
+		String sDate = in.next();
+		Date date2 = null;
+		try {
+			date2 = dateFormat.parse(sDate);
+		} catch (ParseException e) {
+		}
+		Date nextDay = new Date(date2.getTime() + MILLIS_IN_DAY);
+		printOrdersFromDateToDate(date2, nextDay);
+	}
+	private void printForPeriod() {
+		print("enter the time FROM(k:mm):");
+		String s = in.next();
+		SimpleDateFormat sdf1 = new SimpleDateFormat("k:mm");
+		Date dateFrom = null;
+		try {
+			dateFrom = sdf1.parse(s);
+		} catch (ParseException e) {
+		}
+		print("enter the time TO(k:mm):");
+		s = in.next();
+		Date dateTo = null;
+		try {
+			dateTo = sdf1.parse(s);
+		} catch (ParseException e) {
+		}
+		Calendar cur = Calendar.getInstance();
+		Calendar from = Calendar.getInstance();
+		from.setTime(dateFrom);
+		from.set(Calendar.YEAR, cur.get(Calendar.YEAR));
+		from.set(Calendar.MONTH, cur.get(Calendar.MONTH));
+		from.set(Calendar.DATE, cur.get(Calendar.DATE));
+		Calendar to = Calendar.getInstance();
+		to.setTime(dateTo);
+		to.set(Calendar.YEAR, cur.get(Calendar.YEAR));
+		to.set(Calendar.MONTH, cur.get(Calendar.MONTH));
+		to.set(Calendar.DATE, cur.get(Calendar.DATE));
+		printOrdersFromDateToDate(from.getTime(), to.getTime());
+	}
+	private void clear() {
+		bag.clearBag();
+	}
+	private void printLast() {
+		print("the latest 5 product added in your bag:");
+		for (Product product : bag.getLast5Added()) {
+			print(product.toString());
+		}
+	}
+	private void buyBag() {
+		print("if u really want buy the bag enter 'y', if u not want - enter 'n'");
+		String ch = in.next();
+		if (ch.equals("y")) {
+			if(shop.buyBag(user, bag)){
+				print("your are successfully bought the bag!");
+			} else {
+				print("something gets wrong!");
+			}
+		}
+	}
+	private void printCost() {
+		long cost = bag.getCostForWholeBag();
+		print("total cost: " + cost);
+	}
+	private void printBag() {
+		print("your bag contains:");
+		Iterator<Map.Entry<Product, Integer>> it = bag.getProductsInBag().entrySet()
+				.iterator();
+		while (it.hasNext()) {
+			Map.Entry<Product, Integer> entry = it.next();
+			print(entry.getValue() + " X " + entry.getKey().toString());
+		}
+	}
+	private void printAll() {
+		selectProduct();
+		List<Product> products = shop.getAllProducts();
+		for (int i = 0; i < products.size(); ++i) {
+			print(i + " : " + products.get(i).toString());
+		}
+		int index = in.nextInt();
+		if (0 <= index && index < products.size()) {
+			Product product = products.get(index);
+			bag.putProductInBag(product);
+		}
+	}
 	
 	private void addProducts() {
 		fillProducts.fill();
@@ -178,19 +216,19 @@ public class ConsoleShop {
 
 
 	private void chooseAddProductMethod() {
-		p(res.getString("choose_add_product_mode"));
+		print(res.getString("choose_add_product_mode"));
 		int act = in.nextInt();
 		if(act == 0){
-			fillProducts = new GenerateProducts(user, facade);
+			fillProducts = new GenerateProducts2(user, shop);
 		}else{
-			fillProducts = new HandFillProducts(user, facade);
+			fillProducts = new HandFillProducts(user, shop);
 		}
 	}
 
 	
 
 	private void printOrdersFromDateToDate(Date from, Date to) {
-		SortedMap<Date, Order> map = facade.getAllOrders(user).subMap(from, to);
+		SortedMap<Date, Order> map = shop.getAllOrders(user).subMap(from, to);
 		Iterator<Order> x = map.values().iterator();
 		while (x.hasNext()) {
 			Order order = x.next();
@@ -199,27 +237,28 @@ public class ConsoleShop {
 	}
 
 	private void login() {
-		p(res.getString("pr_login"));
+		print(res.getString("pr_login"));
 		String login = in.next();
-		p(res.getString("pr_password"));
+		print(res.getString("pr_password"));
 		String password = in.next();
-		user = facade.login(login, password);
+		user = shop.login(login, password);
+		bag = shop.createBag();
 		if (user == null) {
-			p(res.getString("er_password_login_wrong"));
+			print(res.getString("er_password_login_wrong"));
 			throw new UnregisteredUserOrIncorrectPasswordException();
 		}
 	}
 
 	private void selectProduct() {
-		p(res.getString("pr_select_product"));
+		print(res.getString("pr_select_product"));
 	}
 
 	private void printOpportunities() {
-		p(res.getString("choose_action"));
+		print(res.getString("choose_action"));
 		
 	}
 
-	private static void p(String s) {
+	private static void print(String s) {
 		System.out.println(s);
 	}
 	public static ResourceBundle getRes() {

@@ -3,6 +3,7 @@ package model.product.mobile;
 import java.text.MessageFormat;
 
 import model.product.AbstractArticul;
+import model.product.NamedAttribute;
 import model.product.Product;
 
 public class MobileDevice extends Product{
@@ -37,35 +38,52 @@ public class MobileDevice extends Product{
 						getProducer(), getArticul(), getDescription());
 	}
 
+	@NamedAttribute("diagonal")
 	public double getDiagonal() {
 		return diagonal;
 	}
+	
+	@NamedAttribute("diagonal")
 	public void setDiagonal(double diagonal) {
 		this.diagonal = diagonal;
 	}
+	
+	@NamedAttribute("os")
 	public OS getOs() {
 		return os;
 	}
+	
+	@NamedAttribute("os")
 	public void setOs(OS os) {
 		this.os = os;
 	}
+	
+	@NamedAttribute("batterycapacity")
 	public int getBatteryCapacity() {
 		return batteryCapacity;
 	}
+	
+	@NamedAttribute("batterycapacity")
 	public void setBatteryCapacity(int batteryCapacity) {
 		this.batteryCapacity = batteryCapacity;
 	}
+	
+	@NamedAttribute("gps")
 	public boolean isGPS() {
 		return GPS;
 	}
+	
+	@NamedAttribute("gps")
 	public void setGPS(boolean gPS) {
 		GPS = gPS;
 	}
 
+	@NamedAttribute("cameraresolution")
 	public double getCameraResolution() {
 		return cameraResolution;
 	}
 
+	@NamedAttribute("cameraresolution")
 	public void setCameraResolution(double cameraResolution) {
 		this.cameraResolution = cameraResolution;
 	}

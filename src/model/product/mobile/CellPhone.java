@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.text.MessageFormat;
 
 import model.product.AbstractArticul;
+import model.product.NamedAttribute;
 
 
 public class CellPhone extends MobileDevice {
@@ -44,39 +45,62 @@ public class CellPhone extends MobileDevice {
 						getProducer(), getArticul(), getDescription());
 	}
 
+	@NamedAttribute("shelltype")
 	public ShellType getShellType() {
 		return shellType;
 	}
+	
+	@NamedAttribute("shelltype")
 	public void setShellType(ShellType shellType) {
 		this.shellType = shellType;
 	}
+	
+	@NamedAttribute("sensor")
 	public boolean isSensor() {
 		return sensor;
 	}
+	
+	@NamedAttribute("sensor")
 	public void setSensor(boolean sensor) {
 		this.sensor = sensor;
 	}
+	
+	@NamedAttribute("numberofsims")
 	public int getNumberOfSims() {
 		return numberOfSims;
 	}
+	
+	@NamedAttribute("numberofsims")
 	public void setNumberOfSims(int numberOfSims) {
 		this.numberOfSims = numberOfSims;
 	}
+	
+	@NamedAttribute("bluetooth")
 	public boolean isBluetooth() {
 		return bluetooth;
 	}
+	
+	@NamedAttribute("bluetooth")
 	public void setBluetooth(boolean bluetooth) {
 		this.bluetooth = bluetooth;
 	}
+	
+	@NamedAttribute("wifi")
 	public boolean isWifi() {
 		return wifi;
 	}
+	
+	@NamedAttribute("wifi")
 	public void setWifi(boolean wifi) {
 		this.wifi = wifi;
 	}
+	
+	@NamedAttribute("color")
 	public String getColor() {
 		return color;
 	}
+	
+	@NamedAttribute("color")
 	public void setColor(String color) {
 		this.color = color;
 	}

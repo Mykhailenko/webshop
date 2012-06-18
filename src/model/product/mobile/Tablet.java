@@ -3,6 +3,7 @@ package model.product.mobile;
 import java.text.MessageFormat;
 
 import model.product.AbstractArticul;
+import model.product.NamedAttribute;
 
 
 public class Tablet extends MobileDevice{
@@ -55,49 +56,73 @@ public class Tablet extends MobileDevice{
 	}
 
 
-
+	@NamedAttribute("displayresolution")
 	public DisplayResolution getDisplayResolution() {
 		return displayResolution;
 	}
+	
+	@NamedAttribute("displayresolution")
 	public void setDisplayResolution(DisplayResolution displayResolution) {
 		this.displayResolution = displayResolution;
 	}
+	
+	@NamedAttribute("corefrequency")
 	public double getCoreFrequency() {
 		return coreFrequency;
 	}
+	
+	@NamedAttribute("corefrequency")
 	public void setCoreFrequency(double coreFrequency) {
 		this.coreFrequency = coreFrequency;
 	}
+	
+	@NamedAttribute("proccessorproducer")
 	public ProccessorProducer getProccessorProducer() {
 		return proccessorProducer;
 	}
+	
+	@NamedAttribute("proccessorproducer")
 	public void setProccessorProducer(ProccessorProducer proccessorProducer) {
 		this.proccessorProducer = proccessorProducer;
 	}
+	
+	@NamedAttribute("ramvolume")
 	public int getRamVolume() {
 		return ramVolume;
 	}
+	
+	@NamedAttribute("ramvolume")
 	public void setRamVolume(int ramVolume) {
 		this.ramVolume = ramVolume;
 	}
+	
+	@NamedAttribute("hddvolume")
 	public int getHddVolume() {
 		return hddVolume;
 	}
+	
+	@NamedAttribute("hddvolume")
 	public void setHddVolume(int hddVolume) {
 		this.hddVolume = hddVolume;
 	}
+	
+	@NamedAttribute("numberofusb")
 	public int getNumberOfUSB() {
 		return numberOfUSB;
 	}
+	
+	@NamedAttribute("numberofusb")
 	public void setNumberOfUSB(int numberOfUSB) {
 		this.numberOfUSB = numberOfUSB;
 	}
+	
+	@NamedAttribute("hdmi")
 	public boolean isHDMI() {
 		return HDMI;
 	}
+	
+	@NamedAttribute("hdmi")
 	public void setHDMI(boolean hDMI) {
 		HDMI = hDMI;
 	}
-	
-	
 }

@@ -1,4 +1,4 @@
-package root;
+package root.interfaces;
 
 public interface FillProducts {
 	final static int COUNT = 1;

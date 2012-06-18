@@ -1,6 +1,7 @@
 package model.shop;
 
 import java.io.Serializable;
+import java.text.MessageFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -42,6 +43,12 @@ public class Order implements Serializable {
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
+	
+	@Override
+	public String toString() {
+		return MessageFormat.format("Order [user={0}, date={1}, totalCost()={2}]",
+				user, date, totalCost());
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -65,10 +72,7 @@ public class Order implements Serializable {
 		return true;
 	}
 	
-	@Override
-	public String toString() {
-		return "Order [user=" + user + ", date=" + date + ", total=" + totalCost() + "]";
-	}
+	
 	private long totalCost(){
 		long cost = 0;
 		Iterator<Map.Entry<Product, Integer>> it = this.bag.entrySet().iterator();

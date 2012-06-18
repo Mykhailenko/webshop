@@ -1,10 +1,7 @@
 package model.product;
 
 import java.io.Serializable;
-import java.lang.reflect.Method;
 import java.text.MessageFormat;
-
-import root.ConsoleShop;
 
 public abstract class Product implements Serializable{
 	private static final long serialVersionUID = -5960679887982021996L;
@@ -59,19 +56,22 @@ public abstract class Product implements Serializable{
 		return true;
 	}
 	
+	@NamedAttribute("title")
 	public String getTitle() {
 		return title;
 	}
 
+	@NamedAttribute("title")
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	
+	@NamedAttribute("producer")
 	public String getProducer() {
 		return producer;
 	}
 
-
+	@NamedAttribute("producer")
 	public void setProducer(String producer) {
 		this.producer = producer;
 	}
@@ -82,19 +82,22 @@ public abstract class Product implements Serializable{
 		return articul;
 	}
 
-
-
+	@NamedAttribute("description")
 	public String getDescription() {
 		return description;
 	}
 
-
+	@NamedAttribute("description")
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	@NamedAttribute("cost")
 	public long getCost() {
 		return cost;
 	}
+	
+	@NamedAttribute("cost")
 	public void setCost(long cost) {
 		this.cost = cost;
 	}

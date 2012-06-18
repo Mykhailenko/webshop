@@ -1,10 +1,10 @@
-package root;
+package root.impl;
 import java.util.LinkedHashMap;
 
 import model.product.Product;
 
 
-public class CashedBag extends LinkedHashMap<Product, Object>{
+class CashedProducts extends LinkedHashMap<Product, Object>{
 	private static final long serialVersionUID = 956200199818650734L;
 	private static final int CASH_SIZE = 5;
 	

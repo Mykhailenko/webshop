@@ -3,6 +3,7 @@ package model.product.office;
 import java.text.MessageFormat;
 
 import model.product.AbstractArticul;
+import model.product.NamedAttribute;
 import model.product.Product;
 
 public class OfficeEquipment extends Product {
@@ -42,33 +43,50 @@ public class OfficeEquipment extends Product {
 						getProducer(), getArticul(), getDescription());
 	}
 
+	@NamedAttribute("format")
 	public Format getFormat() {
 		return format;
 	}
+	
+	@NamedAttribute("format")
 	public void setFormat(Format format) {
 		this.format = format;
 	}
+	
+	@NamedAttribute("printingtechnology")
 	public PrintingTechnology getPrintingTechnology() {
 		return printingTechnology;
 	}
+	
+	@NamedAttribute("printingtechnology")
 	public void setPrintingTechnology(PrintingTechnology printingTechnology) {
 		this.printingTechnology = printingTechnology;
 	}
+	
+	@NamedAttribute("colorprinting")
 	public boolean isColorPrinting() {
 		return colorPrinting;
 	}
+	
+	@NamedAttribute("colorprinting")
 	public void setColorPrinting(boolean colorPrinting) {
 		this.colorPrinting = colorPrinting;
 	}
+	
+	@NamedAttribute("wifi")
 	public boolean isWifi() {
 		return wifi;
 	}
+	
+	@NamedAttribute("wifi")
 	public void setWifi(boolean wifi) {
 		this.wifi = wifi;
 	}
+	@NamedAttribute("usb2_0")
 	public boolean isUsb2_0() {
 		return usb2_0;
 	}
+	@NamedAttribute("usb2_0")
 	public void setUsb2_0(boolean usb2_0) {
 		this.usb2_0 = usb2_0;
 	}

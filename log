@@ -73,3 +73,57 @@
 15:54:02,706  INFO root.ConsoleShop:chooseLocale:53 - english selected;
 15:54:47,771  INFO root.ConsoleShop:chooseLocale:50 - russin selected;
 17:34:30,770  INFO root.ConsoleShop:chooseLocale:50 - russin selected;
+14:18:51,807  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+14:19:57,315  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+14:24:01,910  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+14:24:42,051  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+14:25:17,112  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+14:27:15,809  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+14:27:18,488 ERROR root.impl.UserManagerImpl:login:38 - 12345===èàïŒv>ëË…//µZø»
+14:27:51,976  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+14:27:53,998 ERROR root.impl.UserManagerImpl:login:38 - ‚|ËêŠplL4¡h‘øN{===èàïŒv>ëË…//µZø»
+14:28:27,701  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+14:29:26,842  INFO root.ConsoleShop:chooseLocale:61 - english selected;
+14:29:37,082  INFO root.ConsoleShop:chooseLocale:61 - english selected;
+14:31:14,356  INFO root.ConsoleShop:chooseLocale:61 - english selected;
+14:34:10,442  INFO root.ConsoleShop:chooseLocale:61 - english selected;
+14:35:25,478  INFO root.ConsoleShop:chooseLocale:61 - english selected;
+14:40:08,944  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+14:41:07,125  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+14:41:10,065 ERROR root.impl.UserManagerImpl:login:39 - á
+Ü9IºY«¾VàWòˆ>===‚|ËêŠplL4¡h‘øN{
+14:41:29,372  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+14:44:05,653  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+16:19:54,802  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+16:20:34,018  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+16:21:12,120  INFO root.ConsoleShop:chooseLocale:61 - english selected;
+16:22:10,402  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+16:34:03,727  INFO root.ConsoleShop:chooseLocale:61 - english selected;
+16:35:13,099  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+16:46:52,479  INFO root.ConsoleShop:chooseLocale:58 - russin selected;
+17:03:20,880  INFO root.ConsoleShop:chooseLocale:59 - russin selected;
+17:03:27,998  INFO root.impl.GenerateProducts2:fill:111 - FILL
+17:03:27,998  INFO root.impl.GenerateProducts2:fill:114 - 0 : 1
+17:45:27,205  INFO root.ConsoleShop:chooseLocale:63 - russin selected;
+17:45:39,388  INFO root.impl.GenerateProducts2:fill:102 - FILL
+17:45:39,389  INFO root.impl.GenerateProducts2:fill:105 - 0 : 1
+17:48:32,261  INFO root.ConsoleShop:chooseLocale:67 - english selected;
+17:50:19,538  INFO root.ConsoleShop:chooseLocale:63 - english selected;
+17:50:27,232 ERROR root.impl.ShopImpl:loadFromFile:114 - java.lang.ClassCastException: java.util.TreeMap cannot be cast to [Ljava.lang.Object;
+17:53:45,803  INFO root.ConsoleShop:chooseLocale:63 - english selected;
+17:53:49,281 ERROR root.impl.ShopImpl:loadFromFile:115 - java.lang.ClassCastException: java.util.TreeMap cannot be cast to [Ljava.lang.Object;
+17:54:29,493  INFO root.ConsoleShop:chooseLocale:63 - english selected;
+17:54:32,551  INFO root.impl.ShopImpl:loadFromFile:106 - check
+17:54:32,571 ERROR root.impl.ShopImpl:loadFromFile:116 - java.lang.ClassCastException: java.util.TreeMap cannot be cast to [Ljava.lang.Object;
+17:54:57,500  INFO root.ConsoleShop:chooseLocale:63 - english selected;
+17:55:00,048  INFO root.impl.ShopImpl:loadFromFile:107 - check
+17:55:00,068 ERROR root.impl.ShopImpl:loadFromFile:117 - java.lang.ClassCastException: java.util.TreeMap cannot be cast to [Ljava.lang.Object;
+18:01:03,381  INFO root.ConsoleShop:chooseLocale:63 - english selected;
+18:02:28,828 ERROR root.impl.ShopImpl:saveToFile:99 - java.io.NotSerializableException: root.impl.UserManagerImpl
+18:03:04,192  INFO root.ConsoleShop:chooseLocale:63 - english selected;
+18:03:11,985  INFO root.impl.GenerateProducts2:fill:102 - FILL
+18:03:11,986  INFO root.impl.GenerateProducts2:fill:105 - 0 : 1
+18:03:22,396  INFO root.ConsoleShop:chooseLocale:63 - english selected;
+18:03:55,822  INFO root.ConsoleShop:chooseLocale:63 - english selected;
+18:03:58,639  INFO root.impl.ShopImpl:loadFromFile:108 - check
+18:03:58,660 ERROR root.impl.ShopImpl:loadFromFile:118 - java.lang.ClassCastException: java.util.TreeMap cannot be cast to [Ljava.lang.Object;

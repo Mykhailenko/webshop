@@ -3,6 +3,7 @@ package model.product.office;
 import java.text.MessageFormat;
 
 import model.product.AbstractArticul;
+import model.product.NamedAttribute;
 
 public class MFU extends OfficeEquipment{
 	private static final long serialVersionUID = 6614482025943522472L;
@@ -46,21 +47,32 @@ public class MFU extends OfficeEquipment{
 						getArticul(), getDescription());
 	}
 
+	@NamedAttribute("lan")
 	public boolean isLAN() {
 		return LAN;
 	}
+	
+	@NamedAttribute("lan")
 	public void setLAN(boolean lAN) {
 		LAN = lAN;
 	}
+	
+	@NamedAttribute("cardreader")
 	public boolean isCardReader() {
 		return cardReader;
 	}
+	
+	@NamedAttribute("cardreader")
 	public void setCardReader(boolean cardReader) {
 		this.cardReader = cardReader;
 	}
+	
+	@NamedAttribute("opticalresolution")
 	public OpticalResolution getOpticalResolution() {
 		return opticalResolution;
 	}
+	
+	@NamedAttribute("opticalresolution")
 	public void setOpticalResolution(OpticalResolution opticalResolution) {
 		this.opticalResolution = opticalResolution;
 	}
