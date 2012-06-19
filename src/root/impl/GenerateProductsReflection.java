@@ -20,12 +20,12 @@ import model.product.mobile.Tablet;
 import model.product.office.MFU;
 import model.product.office.Printer;
 
-public class GenerateProducts2 implements FillProducts{
+public class GenerateProductsReflection implements FillProducts{
 	private static final Logger LOGGER = Logger.getRootLogger();
 	private Random random = new Random(Calendar.getInstance().getTimeInMillis());
 	private Shop facade;
 	private User user;
-	public GenerateProducts2(User user, Shop facade) {
+	public GenerateProductsReflection(User user, Shop facade) {
 		super();
 		this.facade = facade;
 		this.user = user;

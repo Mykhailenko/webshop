@@ -1,6 +1,5 @@
 package root.impl;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -92,8 +91,9 @@ public class ShopImpl implements Shop {
 	@Override
 	public boolean saveToFile(String fileName) {
 		try {
-			SaverLoaderUtil.saveObjectsToFile(fileName, new Object[] {
-					getAllOrders(null), getAllProducts(), userManager });
+			Object [] arr = new Object[]{
+					getAllOrders(null), getAllProducts(), userManager };
+			SaverLoaderUtil.saveObjectToFile(arr, fileName);
 			return true;
 		} catch (Exception e) {
 			LOGGER.error(e);
@@ -109,8 +109,12 @@ public class ShopImpl implements Shop {
 			Object[] arr = SaverLoaderUtil.loadObjectFromFile(fileName);
 			LOGGER.info("check2");
 			LOGGER.info(arr.length);
-			this.orders = (TreeMap<Date, Order>) arr[0];
-			this.products = (List<Product>) arr[1];
+			this.orders.clear();
+			this.orders.putAll((TreeMap<Date, Order>) arr[0]);
+			
+			this.products.clear();
+			this.products.addAll((List<Product>) arr[1]);
+			
 			this.userManager = (UserManager) arr[2];
 			LOGGER.info("loaded from " + fileName);
 			return true;

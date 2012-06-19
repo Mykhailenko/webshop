@@ -1,8 +1,26 @@
 package root.impl;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
+import java.awt.DisplayMode;
+import java.util.Calendar;
+import java.util.Random;
 import java.util.Scanner;
+
+import model.User;
+import model.product.Articul1;
+import model.product.Product;
+import model.product.mobile.CellPhone;
+import model.product.mobile.MobileDevice;
+import model.product.mobile.Tablet;
+import model.product.mobile.CellPhone.ShellType;
+import model.product.mobile.MobileDevice.OS;
+import model.product.mobile.Tablet.DisplayResolution;
+import model.product.mobile.Tablet.ProccessorProducer;
+import model.product.office.MFU;
+import model.product.office.OfficeEquipment;
+import model.product.office.Printer;
+import model.product.office.MFU.OpticalResolution;
+import model.product.office.OfficeEquipment.Format;
+import model.product.office.OfficeEquipment.PrintingTechnology;
 
 import org.apache.log4j.Logger;
 
@@ -10,35 +28,21 @@ import root.ConsoleShop;
 import root.interfaces.FillProducts;
 import root.interfaces.Shop;
 
-import model.User;
-import model.product.Articul1;
-import model.product.NamedAttribute;
-import model.product.Product;
-import model.product.mobile.CellPhone;
-import model.product.mobile.Tablet;
-import model.product.office.MFU;
-import model.product.office.Printer;
-
 public class HandFillProducts implements FillProducts {
 	private static final Logger LOGGER = Logger.getRootLogger();
-	private Scanner in;
-	private User user;
+	private Random random = new Random(Calendar.getInstance().getTimeInMillis());
 	private Shop facade;
+	private User user;
+	private Scanner in;
 	public HandFillProducts(User user, Shop facade) {
-		this.user = user;
+		super();
 		this.facade = facade;
-		this.in = new Scanner(System.in);
-	}
-	private void question(){
-		p(ConsoleShop.getRes().getString("fill_questn"));
-	}
-	private String getArticle(){
-		p(ConsoleShop.getRes().getString("put_article"));
-		return in.next();
+		this.user = user;
+		in = new Scanner(System.in);
 	}
 	@Override
 	public void fill() {
-		p(ConsoleShop.getRes().getString("fill_start") + COUNT + " " + ConsoleShop.getRes().getString("fill_start1"));
+		print(ConsoleShop.getRes().getString("fill_start") + COUNT + " " + ConsoleShop.getRes().getString("fill_start1"));
 		Printer printer;
 		MFU mfu;
 		CellPhone cellPhone;
@@ -49,22 +53,22 @@ public class HandFillProducts implements FillProducts {
 			switch (nextInt) {
 			case 0:
 				printer = new Printer(new Articul1(getArticle()));
-				fillProduct(printer);
+				fillPrinter(printer);
 				facade.addProduct(user, printer);
 				break;
 			case 1:
 				mfu = new MFU(new Articul1(getArticle()));
-				fillProduct(mfu);
+				fillMFU(mfu);
 				facade.addProduct(user, mfu);
 				break;
 			case 2:
 				cellPhone = new CellPhone(new Articul1(getArticle()));
-				fillProduct(cellPhone);
+				fillCellPhone(cellPhone);
 				facade.addProduct(user, cellPhone);
 				break;
 			case 3:
 				tablet = new Tablet(new Articul1(getArticle()));
-				fillProduct(tablet);
+				fillTablet(tablet);
 				facade.addProduct(user, tablet);
 				break;
 			default:
@@ -73,122 +77,94 @@ public class HandFillProducts implements FillProducts {
 			}
 		}
 	}
-	
-	@SuppressWarnings("rawtypes")
+	private void question(){
+		print(ConsoleShop.getRes().getString("fill_questn"));
+	}
+	private String getArticle(){
+		print(ConsoleShop.getRes().getString("put_article"));
+		return in.next();
+	}
+	public void print(String s){
+		System.out.println(s);
+	}
 	private void fillProduct(Product product){
-		Method [] methods = product.getClass().getMethods();
-		for(Method method : methods){
-			if(method.getName().startsWith("set")){
-				Class[] paramsTypes = method.getParameterTypes();
-				if(paramsTypes.length == 1){
-					Class paramType = paramsTypes[0];
-					if(paramType == String.class){
-						fillString(product, method);
-					}else if(paramType == Boolean.class ||
-							paramType == boolean.class){
-						fillBoolean(product, method);
-					}else if(paramType == Integer.class ||
-							paramType == int.class){
-						fillInteger(product, method);
-					}else if(paramType == Long.class ||
-							paramType == long.class){
-						fillLong(product, method);
-					}else if(paramType == Double.class ||
-							paramType == double.class){
-						fillDouble(product, method);
-					}else if(paramType == Float.class ||
-							paramType == float.class){
-						fillFloat(product, method);
-					}else if(paramType.isEnum()){
-						fillEnum(product, method);
-					}
-				}
-			}
-		}
+		product.setCost(getInt("cost"));
+		product.setDescription(getString("description"));
+		product.setProducer(getString("producer"));
+		product.setTitle(getString("title"));
 	}
-	private void fillLong(Product product, Method method) {
-		p(ConsoleShop.getRes().getString("put_long") + clearSET(method));
-		long x = in.nextLong();
-		try {
-			method.invoke(product, x);
-		} catch (Exception e) {
-			LOGGER.error(e);
-		}
+	private void fillOfficeEq(OfficeEquipment officeEquipment){
+		fillProduct(officeEquipment);
+		officeEquipment.setColorPrinting(getBoolean("color printing"));
+		officeEquipment.setFormat(getEnum("format", Format.values()));
+		officeEquipment.setPrintingTechnology(getEnum("printing technology", PrintingTechnology.values()));
+		officeEquipment.setUsb2_0(getBoolean("usb"));
+		officeEquipment.setWifi(getBoolean("wifi"));
 	}
-	private void fillEnum(Product product, Method method) {
-		p(ConsoleShop.getRes().getString("put_enum") + clearSET(method) + ' ' + ConsoleShop.getRes().getString("put_enum1"));
-		Object [] enums = method.getParameterTypes()[0].getEnumConstants();
+	
+	private void fillPrinter(Printer printer) {
+		fillOfficeEq(printer);
+	}
+	private void fillMFU(MFU mfu) {
+		fillOfficeEq(mfu);
+		mfu.setCardReader(getBoolean("card reader"));
+		mfu.setLAN(getBoolean("LAN"));
+		mfu.setOpticalResolution(getEnum("optical resolution", OpticalResolution.values()));
+	}
+	private void fillMobileDevice(MobileDevice mobileDevice){
+		fillProduct(mobileDevice);
+		mobileDevice.setBatteryCapacity(getInt("battery capacity"));
+		mobileDevice.setCameraResolution(getFloat("camera resolution"));
+		mobileDevice.setDiagonal(getFloat("diagonal"));
+		mobileDevice.setGPS(getBoolean("GPS"));
+		mobileDevice.setOs(getEnum("OS", OS.values()));
+	}
+	private void  fillCellPhone(CellPhone cellPhone) {
+		fillMobileDevice(cellPhone);
+		cellPhone.setBluetooth(getBoolean("bluetooth"));
+		cellPhone.setColor(getString("color"));
+		cellPhone.setNumberOfSims(getInt("number of sims"));
+		cellPhone.setSensor(getBoolean("sensor"));
+		cellPhone.setShellType(getEnum("shell type", ShellType.values()));
+		cellPhone.setWifi(getBoolean("wifi"));
+	}
+	private void fillTablet(Tablet tablet) {
+		fillMobileDevice(tablet);
+		tablet.setDisplayResolution(getEnum("display resolution", DisplayResolution.values()));
+		tablet.setCoreFrequency(getFloat("core frequency"));
+		tablet.setProccessorProducer(getEnum("processor producer", ProccessorProducer.values()));
+		tablet.setRamVolume(getInt("ram"));
+		tablet.setHddVolume(getInt("hdd"));
+		tablet.setNumberOfUSB(getInt("number of usbs"));
+		tablet.setHDMI(getBoolean("HDMI"));
+	}
+	private String getString(String fieldName){
+		print("put string for " + fieldName + ":");
+		return in.next();
+	}
+	private int getInt(String fieldName){
+		print("put int for " + fieldName + ":");
+		return in.nextInt();
+	}
+	private float getFloat(String fieldName){
+		print("put double for " + fieldName + ":");
+		return in.nextFloat();
+	}
+	private boolean getBoolean(String fieldName){
+		print("put boolean for " + fieldName + " (t/y):");
+		String s = in.next();
+		return s.equals("t");
+	}
+	private <T> T getEnum(String fieldName, T [] enums){
+		print("put index of " + fieldName + ":");
 		for(int i = 0; i < enums.length; ++i){
-			Object en = enums[i];
-			p(i + " - " + en);
+			print(i + " - " + enums[i]);
 		}
 		int index = in.nextInt();
 		if(0 <= index && index < enums.length){
-			try {
-				method.invoke(product, enums[index]);
-			} catch (Exception e) {
-				LOGGER.error(e);
-			}
-		}
-	}
-	private void fillFloat(Product product, Method method) {
-		p(ConsoleShop.getRes().getString("put_float") + clearSET(method));
-		float x = in.nextFloat();
-		try {
-			method.invoke(product, x);
-		} catch (Exception e) {
-			LOGGER.error(e);
-		}
-	}
-	private void fillDouble(Product product, Method method) {
-		p(ConsoleShop.getRes().getString("put_double") + clearSET(method));
-		double x = in.nextDouble();
-		try {
-			method.invoke(product, x);
-		} catch (Exception e) {
-			LOGGER.error(e);
-		}
-	}
-	private void fillInteger(Product product, Method method) {
-		p(ConsoleShop.getRes().getString("put_int") + clearSET(method));
-		int x = in.nextInt();
-		try {
-			method.invoke(product, x);
-		} catch (Exception e) {
-			LOGGER.error(e);
-		}
-	}
-
-	private void fillBoolean(Product product, Method method) {
-		p(ConsoleShop.getRes().getString("put_bool") + " '"+ConsoleShop.getRes().getString("put_bool1")+ "' " + ConsoleShop.getRes().getString("put_bool2")+ ' '+  clearSET(method));
-		String s = in.next();
-		try {
-			method.invoke(product, s.equals(ConsoleShop.getRes().getString("put_bool1")));
-		} catch (Exception e) {
-			LOGGER.error(e);
-		}
-	}
-
-	private void fillString(Product product, Method method) {
-		p(ConsoleShop.getRes().getString("put_string") + clearSET(method));
-		String s = in.next();
-		try {
-			method.invoke(product, s);
-		} catch (Exception e) {
-			LOGGER.error(e);
-		}
-	}
-	private String clearSET(Method method){
-		Annotation[] as = method.getDeclaredAnnotations();
-		if(as != null && as.length > 0){
-			NamedAttribute namedAttribute = (NamedAttribute) as[0];
-			return ConsoleShop.getRes().getString(namedAttribute.value());
+			return enums[index];
 		}else{
-			return method.getName().substring(3);
+			return enums[0];
 		}
-//		return ConsoleShop.getRes().getString(method.getName().substring(3).toLowerCase());
-	}
-	private static void p(String s){
-		System.out.println(s);
 	}
 }

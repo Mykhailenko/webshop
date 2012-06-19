@@ -22,7 +22,7 @@ import util.SaverLoaderUtil;
 public class UserManagerImpl implements UserManager {
 	private transient final static Logger LOGGER = Logger.getRootLogger();
 	final private Map<String, User> customers = new HashMap<String, User>();
-	final transient private LinkedHashMap<User, Date> loggedUsers = new LinkedHashMap<User, Date>();
+	final private LinkedHashMap<User, Date> loggedUsers = new LinkedHashMap<User, Date>();
 	@Override
 	public boolean register(String login, String password, String email) {
 		if(!isRegistered(login)){

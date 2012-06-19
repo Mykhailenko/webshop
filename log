@@ -127,3 +127,45 @@
 18:03:55,822  INFO root.ConsoleShop:chooseLocale:63 - english selected;
 18:03:58,639  INFO root.impl.ShopImpl:loadFromFile:108 - check
 18:03:58,660 ERROR root.impl.ShopImpl:loadFromFile:118 - java.lang.ClassCastException: java.util.TreeMap cannot be cast to [Ljava.lang.Object;
+10:07:20,929  INFO root.ConsoleShop:chooseLocale:60 - russin selected;
+10:07:26,753  INFO root.impl.ShopImpl:loadFromFile:109 - check
+10:07:26,781 ERROR root.impl.ShopImpl:loadFromFile:119 - java.lang.ClassCastException: java.util.TreeMap cannot be cast to [Ljava.lang.Object;
+10:07:39,791  INFO root.ConsoleShop:chooseLocale:60 - russin selected;
+10:07:46,333  INFO root.impl.GenerateProducts2:fill:102 - FILL
+10:07:46,333  INFO root.impl.GenerateProducts2:fill:105 - 0 : 1
+10:08:14,309  INFO root.ConsoleShop:chooseLocale:60 - russin selected;
+10:08:18,918  INFO root.impl.ShopImpl:loadFromFile:109 - check
+10:08:18,944  INFO root.impl.ShopImpl:loadFromFile:111 - check2
+10:08:18,944  INFO root.impl.ShopImpl:loadFromFile:112 - 3
+10:08:18,945  INFO root.impl.ShopImpl:loadFromFile:116 - loaded from shop
+10:09:33,360  INFO root.ConsoleShop:chooseLocale:60 - russin selected;
+10:09:38,191  INFO root.impl.GenerateProducts2:fill:102 - FILL
+10:09:38,191  INFO root.impl.GenerateProducts2:fill:105 - 0 : 1
+10:09:50,568  INFO root.ConsoleShop:chooseLocale:60 - russin selected;
+10:09:55,113  INFO root.impl.ShopImpl:loadFromFile:109 - check
+10:09:55,136  INFO root.impl.ShopImpl:loadFromFile:111 - check2
+10:09:55,136  INFO root.impl.ShopImpl:loadFromFile:112 - 3
+10:09:55,137  INFO root.impl.ShopImpl:loadFromFile:116 - loaded from shop
+10:10:54,308  INFO root.ConsoleShop:chooseLocale:60 - russin selected;
+10:10:58,789  INFO root.impl.ShopImpl:loadFromFile:109 - check
+10:10:58,817  INFO root.impl.ShopImpl:loadFromFile:111 - check2
+10:10:58,817  INFO root.impl.ShopImpl:loadFromFile:112 - 3
+10:10:58,817  INFO root.impl.ShopImpl:loadFromFile:116 - loaded from shop
+15:13:02,899  INFO root.ConsoleShop:chooseLocale:65 - english selected;
+15:13:09,667  INFO root.ConsoleShop:chooseLocale:65 - english selected;
+15:13:16,334  INFO root.impl.ShopImpl:loadFromFile:108 - check
+15:13:16,367  INFO root.impl.ShopImpl:loadFromFile:110 - check2
+15:13:16,367  INFO root.impl.ShopImpl:loadFromFile:111 - 3
+15:13:16,367  INFO root.impl.ShopImpl:loadFromFile:115 - loaded from shop
+15:17:31,964  INFO root.ConsoleShop:chooseLocale:65 - english selected;
+15:17:35,750  INFO root.impl.ShopImpl:loadFromFile:108 - check
+15:17:35,776  INFO root.impl.ShopImpl:loadFromFile:110 - check2
+15:17:35,776  INFO root.impl.ShopImpl:loadFromFile:111 - 3
+15:17:35,776  INFO root.impl.ShopImpl:loadFromFile:115 - loaded from shop
+15:17:36,630  INFO root.impl.GenerateProducts:fill:40 - FILL
+15:17:36,630  INFO root.impl.GenerateProducts:fill:46 - 0 : 1
+15:22:27,281  INFO root.ConsoleShop:chooseLocale:65 - english selected;
+15:22:32,515  INFO root.impl.ShopImpl:loadFromFile:108 - check
+15:22:32,542  INFO root.impl.ShopImpl:loadFromFile:110 - check2
+15:22:32,542  INFO root.impl.ShopImpl:loadFromFile:111 - 3
+15:22:32,543  INFO root.impl.ShopImpl:loadFromFile:119 - loaded from shop

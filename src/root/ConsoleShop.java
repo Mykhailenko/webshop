@@ -17,8 +17,10 @@ import java.util.SortedMap;
 import org.apache.log4j.Logger;
 
 import root.exceptions.UnregisteredUserOrIncorrectPasswordException;
-import root.impl.GenerateProducts2;
+import root.impl.GenerateProducts;
+import root.impl.GenerateProductsReflection;
 import root.impl.HandFillProducts;
+import root.impl.HandFillProductsReflection;
 import root.interfaces.Bag;
 import root.interfaces.FillProducts;
 import root.interfaces.Shop;
@@ -219,7 +221,7 @@ public class ConsoleShop {
 		print(res.getString("choose_add_product_mode"));
 		int act = in.nextInt();
 		if(act == 0){
-			fillProducts = new GenerateProducts2(user, shop);
+			fillProducts = new GenerateProducts(user, shop);
 		}else{
 			fillProducts = new HandFillProducts(user, shop);
 		}
