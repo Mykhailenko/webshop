@@ -169,3 +169,18 @@
 15:22:32,542  INFO root.impl.ShopImpl:loadFromFile:110 - check2
 15:22:32,542  INFO root.impl.ShopImpl:loadFromFile:111 - 3
 15:22:32,543  INFO root.impl.ShopImpl:loadFromFile:119 - loaded from shop
+10:11:56,059  INFO root.ConsoleShop:chooseLocale:66 - english selected;
+10:12:01,586  INFO root.impl.ShopImpl:loadFromFile:108 - check
+10:12:01,626  INFO root.impl.ShopImpl:loadFromFile:110 - check2
+10:12:01,627  INFO root.impl.ShopImpl:loadFromFile:111 - 3
+10:12:01,627  INFO root.impl.ShopImpl:loadFromFile:119 - loaded from shop
+13:09:52,365  INFO root.ConsoleShop:chooseLocale:66 - english selected;
+13:09:59,434  INFO root.impl.ShopImpl:loadFromFile:108 - check
+13:09:59,458  INFO root.impl.ShopImpl:loadFromFile:110 - check2
+13:09:59,458  INFO root.impl.ShopImpl:loadFromFile:111 - 3
+13:09:59,458  INFO root.impl.ShopImpl:loadFromFile:119 - loaded from shop
+13:11:46,926  INFO root.ConsoleShop:chooseLocale:66 - english selected;
+13:11:50,600  INFO root.impl.ShopImpl:loadFromFile:108 - check
+13:11:50,627  INFO root.impl.ShopImpl:loadFromFile:110 - check2
+13:11:50,627  INFO root.impl.ShopImpl:loadFromFile:111 - 3
+13:11:50,628  INFO root.impl.ShopImpl:loadFromFile:119 - loaded from shop

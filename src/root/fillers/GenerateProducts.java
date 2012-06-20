@@ -1,4 +1,4 @@
-package root.impl;
+package root.fillers;
 
 import java.util.Calendar;
 import java.util.Random;
@@ -70,7 +70,6 @@ public class GenerateProducts implements FillProducts{
 				break;
 			}
 		}
-		
 	}
 	private void generateProduct(Product product){
 		product.setCost(random.nextInt());
