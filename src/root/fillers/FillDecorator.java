@@ -16,11 +16,21 @@ public abstract class FillDecorator {
 	protected FillDecorator() {
 	}
 
+	public void fill(Product product){
 		if(decorator != null){
-			public void fill(Product product){
 			decorator.fill(product);
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public void print(String s){
 		System.out.println(s);
