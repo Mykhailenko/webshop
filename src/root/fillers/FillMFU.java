@@ -16,9 +16,9 @@ public class FillMFU extends FillDecorator{
 		super.fill(product);
 		if(product instanceof MFU){
 			MFU mfu = (MFU)product; 
-			mfu.setCardReader(getBoolean("card reader"));
-			mfu.setLAN(getBoolean("LAN"));
-			mfu.setOpticalResolution(getEnum("optical resolution", OpticalResolution.values()));
+			mfu.setCardReader(getBoolean("cardreader"));
+			mfu.setLAN(getBoolean("lan"));
+			mfu.setOpticalResolution(getEnum("opticalresolution", OpticalResolution.values()));
 		}
 	
 	}

@@ -17,12 +17,12 @@ public class FillTablet extends FillDecorator{
 		super.fill(product);
 		if(product instanceof Tablet){
 			Tablet tablet = (Tablet) product;
-			tablet.setDisplayResolution(getEnum("display resolution", DisplayResolution.values()));
-			tablet.setCoreFrequency(getFloat("core frequency"));
-			tablet.setProccessorProducer(getEnum("processor producer", ProccessorProducer.values()));
+			tablet.setDisplayResolution(getEnum("displayresolution", DisplayResolution.values()));
+			tablet.setCoreFrequency(getFloat("corefrequency"));
+			tablet.setProccessorProducer(getEnum("processorproducer", ProccessorProducer.values()));
 			tablet.setRamVolume(getInt("ram"));
 			tablet.setHddVolume(getInt("hdd"));
-			tablet.setNumberOfUSB(getInt("number of usbs"));
+			tablet.setNumberOfUSB(getInt("numberofusb"));
 			tablet.setHDMI(getBoolean("HDMI"));
 		}
 	}

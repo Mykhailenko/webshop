@@ -2,14 +2,15 @@ package root.fillers;
 
 import model.product.Product;
 
-public class FillProduct extends FillDecorator{
+public class FillProduct extends FillDecorator {
 
 	public FillProduct(FillDecorator decorator) {
 		super(decorator);
 	}
+
 	public FillProduct() {
 	}
-	
+
 	@Override
 	public void fill(Product product) {
 		super.fill(product);

@@ -35,6 +35,10 @@ public class GenerateProductsReflection implements FillProducts{
 		Method [] methods = product.getClass().getMethods();
 		for(Method method : methods){
 			if(method.getName().startsWith("set")){
+				if(method.getDeclaredAnnotations() == null ||
+						method.getDeclaredAnnotations().length == 0){
+					continue;
+				}
 				Class[] paramsTypes = method.getParameterTypes();
 				if(paramsTypes.length == 1){
 					Class paramType = paramsTypes[0];

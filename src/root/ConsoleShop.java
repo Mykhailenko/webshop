@@ -222,7 +222,7 @@ public class ConsoleShop {
 		print(res.getString("choose_add_product_mode"));
 		int act = in.nextInt();
 		if(act == 0){
-			fillProducts = new GenerateProducts(user, shop);
+			fillProducts = new GenerateProductsReflection(user, shop);
 		}else{
 			fillProducts = new HandDecoratorFillProducts(shop, user);
 		}

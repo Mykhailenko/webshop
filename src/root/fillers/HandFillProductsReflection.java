@@ -29,43 +29,33 @@ public class HandFillProductsReflection implements FillProducts {
 		this.facade = facade;
 		this.in = new Scanner(System.in);
 	}
-	private void question(){
-		print(ConsoleShop.getRes().getString("fill_questn"));
-	}
-	private String getArticle(){
-		print(ConsoleShop.getRes().getString("put_article"));
-		return in.next();
-	}
 	@Override
 	public void fill() {
 		print(ConsoleShop.getRes().getString("fill_start") + COUNT + " " + ConsoleShop.getRes().getString("fill_start1"));
-		Printer printer;
-		MFU mfu;
-		CellPhone cellPhone;
-		Tablet tablet;
+		Product product;
 		for(int i = 0; i < COUNT; ++i){
 			question();
 			int nextInt = in.nextInt();
 			switch (nextInt) {
 			case 0:
-				printer = new Printer(new Articul1(getArticle()));
-				fillProduct(printer);
-				facade.addProduct(user, printer);
+				product = new Printer(new Articul1(getArticle()));
+				fillProduct(product);
+				facade.addProduct(user, product);
 				break;
 			case 1:
-				mfu = new MFU(new Articul1(getArticle()));
-				fillProduct(mfu);
-				facade.addProduct(user, mfu);
+				product = new MFU(new Articul1(getArticle()));
+				fillProduct(product);
+				facade.addProduct(user, product);
 				break;
 			case 2:
-				cellPhone = new CellPhone(new Articul1(getArticle()));
-				fillProduct(cellPhone);
-				facade.addProduct(user, cellPhone);
+				product = new CellPhone(new Articul1(getArticle()));
+				fillProduct(product);
+				facade.addProduct(user, product);
 				break;
 			case 3:
-				tablet = new Tablet(new Articul1(getArticle()));
-				fillProduct(tablet);
-				facade.addProduct(user, tablet);
+				product = new Tablet(new Articul1(getArticle()));
+				fillProduct(product);
+				facade.addProduct(user, product);
 				break;
 			default:
 				--i;
@@ -74,11 +64,22 @@ public class HandFillProductsReflection implements FillProducts {
 		}
 	}
 	
+	private void question(){
+		print(ConsoleShop.getRes().getString("fill_questn"));
+	}
+	private String getArticle(){
+		print(ConsoleShop.getRes().getString("put_article"));
+		return in.next();
+	}
 	@SuppressWarnings("rawtypes")
 	private void fillProduct(Product product){
 		Method [] methods = product.getClass().getMethods();
 		for(Method method : methods){
 			if(method.getName().startsWith("set")){
+				if(method.getDeclaredAnnotations() == null ||
+						method.getDeclaredAnnotations().length == 0){
+					continue;
+				}
 				Class[] paramsTypes = method.getParameterTypes();
 				if(paramsTypes.length == 1){
 					Class paramType = paramsTypes[0];
@@ -181,11 +182,14 @@ public class HandFillProductsReflection implements FillProducts {
 	private String clearSET(Method method){
 		Annotation[] as = method.getDeclaredAnnotations();
 		if(as != null && as.length > 0){
-			NamedAttribute namedAttribute = (NamedAttribute) as[0];
+			NamedAttribute namedAttribute = method.getAnnotation(NamedAttribute.class);
+//			NamedAttribute namedAttribute = (NamedAttribute) as[0];
 			String s = ConsoleShop.getRes().getString(namedAttribute.value());
 			if(s != null){
 				return s;
 			}
+		}else{
+			assert true != false;
 		}
 		return method.getName().substring(3).toLowerCase();
 	}

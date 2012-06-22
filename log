@@ -184,3 +184,39 @@
 13:11:50,627  INFO root.impl.ShopImpl:loadFromFile:110 - check2
 13:11:50,627  INFO root.impl.ShopImpl:loadFromFile:111 - 3
 13:11:50,628  INFO root.impl.ShopImpl:loadFromFile:119 - loaded from shop
+10:52:00,333  INFO root.ConsoleShop:chooseLocale:63 - russin selected;
+10:52:13,852  INFO root.impl.ShopImpl:loadFromFile:108 - check
+10:52:13,888  INFO root.impl.ShopImpl:loadFromFile:110 - check2
+10:52:13,888  INFO root.impl.ShopImpl:loadFromFile:111 - 3
+10:52:13,888  INFO root.impl.ShopImpl:loadFromFile:119 - loaded from shop
+10:53:32,462  INFO root.ConsoleShop:chooseLocale:63 - russin selected;
+10:53:36,500  INFO root.impl.ShopImpl:loadFromFile:108 - check
+10:53:36,551  INFO root.impl.ShopImpl:loadFromFile:110 - check2
+10:53:36,551  INFO root.impl.ShopImpl:loadFromFile:111 - 3
+10:53:36,551  INFO root.impl.ShopImpl:loadFromFile:119 - loaded from shop
+11:00:38,472  INFO root.ConsoleShop:chooseLocale:63 - russin selected;
+11:00:41,719  INFO root.impl.ShopImpl:loadFromFile:108 - check
+11:00:41,720  INFO root.impl.ShopImpl:loadFromFile:110 - check2
+11:00:41,720  INFO root.impl.ShopImpl:loadFromFile:111 - 3
+11:00:41,720  INFO root.impl.ShopImpl:loadFromFile:119 - loaded from shop
+11:00:57,204 ERROR root.fillers.HandFillProductsReflection:fillLong:119 - java.lang.reflect.InvocationTargetException
+11:12:59,812  INFO root.ConsoleShop:chooseLocale:63 - russin selected;
+11:13:03,622  INFO root.impl.ShopImpl:loadFromFile:108 - check
+11:13:03,638  INFO root.impl.ShopImpl:loadFromFile:110 - check2
+11:13:03,638  INFO root.impl.ShopImpl:loadFromFile:111 - 3
+11:13:03,638  INFO root.impl.ShopImpl:loadFromFile:119 - loaded from shop
+16:22:32,965  INFO root.ConsoleShop:chooseLocale:63 - russin selected;
+16:22:37,104  INFO root.impl.ShopImpl:loadFromFile:108 - check
+16:22:37,180  INFO root.impl.ShopImpl:loadFromFile:110 - check2
+16:22:37,180  INFO root.impl.ShopImpl:loadFromFile:111 - 3
+16:22:37,181  INFO root.impl.ShopImpl:loadFromFile:119 - loaded from shop
+16:23:43,391  INFO root.ConsoleShop:chooseLocale:63 - russin selected;
+16:23:48,546  INFO root.impl.ShopImpl:loadFromFile:108 - check
+16:23:48,575  INFO root.impl.ShopImpl:loadFromFile:110 - check2
+16:23:48,575  INFO root.impl.ShopImpl:loadFromFile:111 - 3
+16:23:48,575  INFO root.impl.ShopImpl:loadFromFile:119 - loaded from shop
+16:24:20,722  INFO root.ConsoleShop:chooseLocale:66 - english selected;
+16:24:27,092  INFO root.impl.ShopImpl:loadFromFile:108 - check
+16:24:27,119  INFO root.impl.ShopImpl:loadFromFile:110 - check2
+16:24:27,120  INFO root.impl.ShopImpl:loadFromFile:111 - 3
+16:24:27,120  INFO root.impl.ShopImpl:loadFromFile:119 - loaded from shop

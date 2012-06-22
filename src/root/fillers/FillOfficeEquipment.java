@@ -17,10 +17,10 @@ public class FillOfficeEquipment extends FillDecorator{
 		super.fill(product);
 		if(product instanceof OfficeEquipment){
 			OfficeEquipment officeEquipment = (OfficeEquipment) product;
-			officeEquipment.setColorPrinting(getBoolean("color printing"));
+			officeEquipment.setColorPrinting(getBoolean("colorprinting"));
 			officeEquipment.setFormat(getEnum("format", Format.values()));
-			officeEquipment.setPrintingTechnology(getEnum("printing technology", PrintingTechnology.values()));
-			officeEquipment.setUsb2_0(getBoolean("usb"));
+			officeEquipment.setPrintingTechnology(getEnum("printingtechnology", PrintingTechnology.values()));
+			officeEquipment.setUsb2_0(getBoolean("usb2_0"));
 			officeEquipment.setWifi(getBoolean("wifi"));
 		}
 	}

@@ -16,11 +16,11 @@ public class FillMobileDevice extends FillDecorator{
 		super.fill(product);
 		if(product instanceof MobileDevice){
 			MobileDevice mobileDevice = (MobileDevice) product;
-			mobileDevice.setBatteryCapacity(getInt("battery capacity"));
-			mobileDevice.setCameraResolution(getFloat("camera resolution"));
+			mobileDevice.setBatteryCapacity(getInt("batterycapacity"));
+			mobileDevice.setCameraResolution(getFloat("cameraresolution"));
 			mobileDevice.setDiagonal(getFloat("diagonal"));
-			mobileDevice.setGPS(getBoolean("GPS"));
-			mobileDevice.setOs(getEnum("OS", OS.values()));
+			mobileDevice.setGPS(getBoolean("gps"));
+			mobileDevice.setOs(getEnum("os", OS.values()));
 		}
 	}
 

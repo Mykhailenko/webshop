@@ -19,9 +19,9 @@ public class FillCellPhone extends FillDecorator{
 			CellProneInterface cellPhone = (CellProneInterface) product;
 			cellPhone.setBluetooth(getBoolean("bluetooth"));
 			cellPhone.setColor(getString("color"));
-			cellPhone.setNumberOfSims(getInt("number of sims"));
+			cellPhone.setNumberOfSims(getInt("numberofsims"));
 			cellPhone.setSensor(getBoolean("sensor"));
-			cellPhone.setShellType(getEnum("shell type", ShellType.values()));
+			cellPhone.setShellType(getEnum("shelltype", ShellType.values()));
 			cellPhone.setWifi(getBoolean("wifi"));
 		}
 	}

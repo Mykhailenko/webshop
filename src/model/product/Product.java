@@ -102,5 +102,7 @@ public abstract class Product implements Serializable{
 		this.cost = cost;
 	}
 	
-	
+	public void setCOSS(long cost){
+		throw new UnsupportedOperationException();
+	}
 }
